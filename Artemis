@@ -3,18 +3,20 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfólio | Lucas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfólio | Ah</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
-    body {
+    /* Reset básico */
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Orbitron', sans-serif;
-      color: #ff003c;
-      text-shadow: 0 0 5px #ff003c;
+      box-sizing: border-box;
+    }
 
+    body {
+      font-family: 'Orbitron', sans-serif;
       background-image: url('8.png');
       /* Substitua pelo caminho da sua imagem */
       background-size: cover;
@@ -22,7 +24,10 @@
       background-repeat: no-repeat;
       background-attachment: fixed;
       background-color: #0a0a0a;
+      color: #ff003c;
+      text-shadow: 0 0 5px #ff003c;
       position: relative;
+      overflow-x: hidden;
     }
 
     /* Sobreposição escura para melhorar legibilidade */
@@ -37,26 +42,117 @@
       z-index: -1;
     }
 
+    /* Header com botão hamburger */
     header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       background-color: rgba(17, 17, 17, 0.8);
-      padding: 2rem;
-      text-align: center;
       border-bottom: 1px solid #ff003c;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
       backdrop-filter: blur(5px);
+      z-index: 1001;
     }
 
     header h1 {
-      font-size: 3rem;
-      margin: 0;
+      font-size: 2rem;
+      cursor: default;
     }
 
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
+    /* Botão Hamburger */
+    .hamburger {
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      z-index: 1100;
     }
 
-    section {
-      padding: 2rem;
+    .hamburger div {
+      width: 100%;
+      height: 4px;
+      background-color: #ff003c;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Transformação para X */
+    .hamburger.active div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active div:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* Sidebar menu */
+    nav.sidebar {
+      position: fixed;
+      top: 0;
+      left: -250px;
+      width: 250px;
+      height: 100vh;
+      background-color: rgba(17, 17, 17, 0.95);
+      box-shadow: 2px 0 10px #ff003c99;
+      backdrop-filter: blur(10px);
+      padding-top: 5rem;
+      transition: left 0.4s ease;
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    nav.sidebar.open {
+      left: 0;
+    }
+
+    nav.sidebar a {
+      color: #ff003c;
+      text-decoration: none;
+      font-size: 1.3rem;
+      padding: 0.5rem 2rem;
+      border-left: 4px solid transparent;
+      transition: border-color 0.3s ease, background-color 0.3s ease;
+    }
+
+    nav.sidebar a:hover {
+      background-color: #33000a;
+      border-left: 4px solid #ff003c;
+    }
+
+    /* Fundo escurecido quando menu aberto */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 1040;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Conteúdo principal */
+    main {
+      padding: 6rem 2rem 2rem 2rem;
       max-width: 900px;
       margin: 0 auto;
       background-color: rgba(17, 17, 17, 0.7);
@@ -64,13 +160,14 @@
       box-shadow: 0 0 10px #ff003c44;
       backdrop-filter: blur(5px);
       border-radius: 8px;
-      margin-bottom: 2rem;
+      color: #ff003c;
     }
 
     h2 {
-      color: #ff003c;
       border-bottom: 1px solid #ff003c;
       padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
     }
 
     .card {
@@ -83,12 +180,9 @@
     }
 
     .contato {
-      background-color: rgba(17, 17, 17, 0.8);
-      padding: 2rem;
       text-align: center;
-      border-top: 1px solid #ff003c;
-      backdrop-filter: blur(5px);
-      border-radius: 0 0 8px 8px;
+      margin-top: 2rem;
+      font-size: 1.1rem;
     }
 
     a {
@@ -99,46 +193,109 @@
     a:hover {
       text-decoration: underline;
     }
+
+    /* Link smooth scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Responsivo */
+    @media (max-width: 600px) {
+      main {
+        margin: 5rem 1rem 2rem 1rem;
+        padding: 1.5rem;
+      }
+
+      nav.sidebar {
+        width: 200px;
+        padding-top: 4rem;
+      }
+    }
   </style>
 </head>
 
 <body>
+
   <header>
-    <h1>Lucas Alves</h1>
-    <p>Desenvolvedor de Scripts | Amante de Tecnologia</p>
+    <h1>Ah</h1>
+    <div class="hamburger" id="hamburger">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </header>
 
-  <section>
-    <h2>Sobre Mim</h2>
-    <div class="card">
-      <p>Sou um criador de soluções digitais que unem automação, inteligência e criatividade. Com foco em liberdade,
-        crio ferramentas que tornam a vida mais fácil.</p>
-    </div>
+  <nav class="sidebar" id="sidebar">
+    <a href="#sobre">Sobre Mim</a>
+    <a href="#projetos">Projetos</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#contato">Contato</a>
+  </nav>
 
-    <h2>Projetos</h2>
-    <div class="card">
-      <h3>Bot de Automação para WhatsApp</h3>
-      <p>Automatiza mensagens e respostas com integração via Python e APIs.</p>
-    </div>
-    <div class="card">
-      <h3>Organizador de Arquivos</h3>
-      <p>Script em Python que categoriza e move arquivos automaticamente no seu PC.</p>
-    </div>
+  <div class="overlay" id="overlay"></div>
 
-    <h2>Habilidades</h2>
-    <div class="card">
-      <ul>
-        <li>Python</li>
-        <li>HTML & CSS</li>
-        <li>Automação e RPA</li>
-        <li>Criação de Bots e Scripts Úteis</li>
-      </ul>
-    </div>
-  </section>
+  <main>
+    <section id="sobre">
+      <h2>Sobre Mim</h2>
+      <div class="card">
+        <p>Sou um criador de soluções digitais que unem automação, inteligência e criatividade. Com foco em liberdade,
+          crio ferramentas que tornam a vida mais fácil.</p>
+      </div>
+    </section>
 
-  <div class="contato">
-    <p>Entre em contato comigo: <a href="mailto:lucas@email.com">lucas@email.com</a></p>
-  </div>
+    <section id="projetos">
+      <h2>Projetos</h2>
+      <div class="card">
+        <h3>Bot de Automação para WhatsApp</h3>
+        <p>Automatiza mensagens e respostas com integração via Python e APIs.</p>
+      </div>
+      <div class="card">
+        <h3>Organizador de Arquivos</h3>
+        <p>Script em Python que categoriza e move arquivos automaticamente no seu PC.</p>
+      </div>
+    </section>
+
+    <section id="habilidades">
+      <h2>Habilidades</h2>
+      <div class="card">
+        <ul>
+          <li>Python</li>
+          <li>HTML & CSS</li>
+          <li>Automação e RPA</li>
+          <li>Criação de Bots e Scripts Úteis</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="contato" class="contato">
+      <h2>Contato</h2>
+      <p>Entre em contato comigo: <a href="mailto:lucas@email.com">Ah@email.com</a></p>
+    </section>
+  </main>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('overlay');
+
+    function toggleMenu() {
+      hamburger.classList.toggle('active');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    overlay.addEventListener('click', toggleMenu);
+
+    // Fechar menu ao clicar em link
+    sidebar.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+      });
+    });
+  </script>
 </body>
 
 </html>

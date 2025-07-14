@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfólio | Lucas</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Orbitron', sans-serif;
+      color: #ff003c;
+      text-shadow: 0 0 5px #ff003c;
+
+      background-image: url('8.png');
+      /* Substitua pelo caminho da sua imagem */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-color: #0a0a0a;
+      position: relative;
+    }
+
+    /* Sobreposição escura para melhorar legibilidade */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(10, 10, 10, 0.75);
+      z-index: -1;
+    }
+
+    header {
+      background-color: rgba(17, 17, 17, 0.8);
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 1px solid #ff003c;
+      backdrop-filter: blur(5px);
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    section {
+      padding: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: rgba(17, 17, 17, 0.7);
+      border: 1px solid #ff003c;
+      box-shadow: 0 0 10px #ff003c44;
+      backdrop-filter: blur(5px);
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      color: #ff003c;
+      border-bottom: 1px solid #ff003c;
+      padding-bottom: 0.5rem;
+    }
+
+    .card {
+      background-color: rgba(17, 17, 17, 0.6);
+      border: 1px solid #ff003c;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 0 10px #ff003c44;
+      border-radius: 6px;
+    }
+
+    .contato {
+      background-color: rgba(17, 17, 17, 0.8);
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid #ff003c;
+      backdrop-filter: blur(5px);
+      border-radius: 0 0 8px 8px;
+    }
+
+    a {
+      color: #ff003c;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Lucas Alves</h1>
+    <p>Desenvolvedor de Scripts | Amante de Tecnologia</p>
+  </header>
+
+  <section>
+    <h2>Sobre Mim</h2>
+    <div class="card">
+      <p>Sou um criador de soluções digitais que unem automação, inteligência e criatividade. Com foco em liberdade,
+        crio ferramentas que tornam a vida mais fácil.</p>
+    </div>
+
+    <h2>Projetos</h2>
+    <div class="card">
+      <h3>Bot de Automação para WhatsApp</h3>
+      <p>Automatiza mensagens e respostas com integração via Python e APIs.</p>
+    </div>
+    <div class="card">
+      <h3>Organizador de Arquivos</h3>
+      <p>Script em Python que categoriza e move arquivos automaticamente no seu PC.</p>
+    </div>
+
+    <h2>Habilidades</h2>
+    <div class="card">
+      <ul>
+        <li>Python</li>
+        <li>HTML & CSS</li>
+        <li>Automação e RPA</li>
+        <li>Criação de Bots e Scripts Úteis</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="contato">
+    <p>Entre em contato comigo: <a href="mailto:lucas@email.com">lucas@email.com</a></p>
+  </div>
+</body>
+
+</html>
